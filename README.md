@@ -1,3 +1,3 @@
-# springboot-backend
+# Springboot-backend
 
-CRUD Employee using SpringBoot
+CRUD Employee using SpringBoot Basic
