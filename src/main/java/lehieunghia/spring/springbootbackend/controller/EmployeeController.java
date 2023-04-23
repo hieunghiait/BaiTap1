@@ -4,6 +4,7 @@ import lehieunghia.spring.springbootbackend.model.Employee;
 import lehieunghia.spring.springbootbackend.model.ResourceNotFoundException;
 import lehieunghia.spring.springbootbackend.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,4 +54,16 @@ public class EmployeeController {
         employeeRepository.save(updateEmployee);
         return ResponseEntity.ok(updateEmployee);
     }
+
+    /*
+     * function using delete a employee
+     * */
+    @DeleteMapping("{id}")
+    public ResponseEntity<HttpStatus> deleteEmployee(@PathVariable long id) {
+        Employee employee = employeeRepository.findById(id).
+                orElseThrow(() -> new ResourceNotFoundException("Employee not exits witd id: " + id));
+        employeeRepository.delete(employee);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }
